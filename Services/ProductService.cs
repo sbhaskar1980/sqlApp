@@ -3,21 +3,29 @@ using sqlApp.Models;
 using System.Data.SqlClient;
 namespace sqlApp.Services
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
-        private static string db_source= "appdb9423.database.windows.net";
-        private static string db_user="bsharma";
-        private static string db_password="Bosco@123abc";
-        private static string db_database = "appDB";
+        //private static string db_source= "appdb9423.database.windows.net";
+        //private static string db_user="bsharma";
+        //private static string db_password="Bosco@123abc";
+        //private static string db_database = "appDB";
+
+        private readonly IConfiguration _configuration;
+
+        public ProductService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+
+        }
 
         private SqlConnection getConnection()
         {
-            var _builder = new SqlConnectionStringBuilder();
-            _builder.DataSource = db_source;
-            _builder.UserID = db_user;
-            _builder.Password = db_password;
-            _builder.InitialCatalog = db_database;
-            return new SqlConnection(_builder.ConnectionString);
+            //var _builder = new SqlConnectionStringBuilder();
+            //_builder.DataSource = db_source;
+            //_builder.UserID = db_user;
+            //_builder.Password = db_password;
+            //_builder.InitialCatalog = db_database;
+            return new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
         }
 
         public List<Product> GetProducts()
