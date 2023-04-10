@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using sqlApp.Models;
 using sqlApp.Services;
 
@@ -16,7 +15,6 @@ namespace sqlApp.Pages
 
         public void OnGet()
         {
-            //ProductService productsService = new ProductService();
             Products = _productService.GetProducts();
         }
     }
